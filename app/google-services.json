@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "584778420296",
+    "firebase_url": "https://resin-id-sorter.firebaseio.com",
+    "project_id": "resin-id-sorter",
+    "storage_bucket": "resin-id-sorter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:584778420296:android:a2e258757cdf30b2e7887d",
+        "android_client_info": {
+          "package_name": "com.example.resin_id_sorter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "584778420296-kqru4vlccg5mnq388e76nv2lv99g401r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCzsT59J8NvTQxhMAv-51fPnTGp88vjB_4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "584778420296-kqru4vlccg5mnq388e76nv2lv99g401r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
