@@ -33,6 +33,7 @@ dependencies {
 
     implementation 'com.google.firebase:firebase-database:19.2.0'
 
+    implementation 'com.sothree.slidinguppanel:library:3.4.0'
 
     // ML Kit dependencies
     implementation 'com.google.firebase:firebase-ml-vision:24.0.1'
@@ -48,6 +49,9 @@ dependencies {
     implementation 'com.google.firebase:firebase-ml-vision-object-detection-model:19.0.3'
     // AutoML model
     implementation 'com.google.firebase:firebase-ml-vision-automl:18.0.3'
+
+    //charts
+    implementation 'com.github.AnyChart:AnyChart-Android:0.0.3'
 
     // Camera X
     implementation "androidx.camera:camera-core:1.0.0-alpha05"

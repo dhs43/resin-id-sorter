@@ -4,12 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".StatsActivity">
+    tools:context=".StatsActivity"
+    android:background="#000000">
+
+    <com.anychart.anychart.AnyChartView
+        android:id="@+id/any_chart_view"
+        android:layout_width="400dp"
+        android:layout_height="400dp"
+        />
 
     <Button
         android:id="@+id/back"
-        android:layout_width="wrap_content"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:text="Back" />
+        android:background="@drawable/rounded_button"
+        android:layout_alignParentBottom="true"
+        android:text="Back"
+        android:layout_marginBottom="10dp"/>
 </RelativeLayout>
