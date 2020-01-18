@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">resin-id-sorter</string>
+    <string name="take_a_picture">Take a picture</string>
+    <string name="camera_shutter">camera shutter</string>
 </resources>
