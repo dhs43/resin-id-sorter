@@ -27,9 +27,13 @@ public class StatsActivity extends AppCompatActivity {
         Pie pie = AnyChart.pie();
 
         List<DataEntry> data = new ArrayList<>();
-        data.add(new ValueDataEntry("John", 10000));
-        data.add(new ValueDataEntry("Jake", 12000));
-        data.add(new ValueDataEntry("Peter", 18000));
+        data.add(new ValueDataEntry("PETE", 2));
+        data.add(new ValueDataEntry("HDPE", 3));
+        data.add(new ValueDataEntry("PVC", 10));
+        data.add(new ValueDataEntry("LDPE", 7));
+        data.add(new ValueDataEntry("PP", 3));
+        data.add(new ValueDataEntry("PS", 0));
+        data.add(new ValueDataEntry("Other", 5));
 
         pie.setData(data);
 
@@ -43,7 +47,6 @@ public class StatsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 startActivity(new Intent(StatsActivity.this, MainActivity.class));
                 overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-
             }
         });
     }

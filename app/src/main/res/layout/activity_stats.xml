@@ -7,11 +7,21 @@
     tools:context=".StatsActivity"
     android:background="#000000">
 
-    <com.anychart.anychart.AnyChartView
-        android:id="@+id/any_chart_view"
-        android:layout_width="400dp"
-        android:layout_height="400dp"
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
         />
+
+    <com.anychart.anychart.AnyChartView
+    android:id="@+id/any_chart_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="100dp"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:paddingBottom="100dp"
+    />
 
     <Button
         android:id="@+id/back"
