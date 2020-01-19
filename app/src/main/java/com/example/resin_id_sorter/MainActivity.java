@@ -1,5 +1,6 @@
 package com.example.resin_id_sorter;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,24 +10,44 @@ import android.view.View;
 import android.content.Intent;
 import android.widget.ListView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.ml.common.modeldownload.FirebaseModelDownloadConditions;
+import com.google.firebase.ml.common.modeldownload.FirebaseModelManager;
+import com.google.firebase.ml.vision.automl.FirebaseAutoMLRemoteModel;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-
-    ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        listView = (ListView)findViewById(R.id.list);
+        final Button btn1 = (Button)findViewById(R.id.button_scan);
+        Button btn2 = (Button)findViewById(R.id.button_stats);
+        btn1.setEnabled(false);
+
+        FirebaseAutoMLRemoteModel remoteModel = new FirebaseAutoMLRemoteModel.Builder("seven_plastics_2020117235328").build();
+
+        FirebaseModelDownloadConditions conditions = new FirebaseModelDownloadConditions.Builder()
+                .requireWifi()
+                .build();
+        FirebaseModelManager.getInstance().download(remoteModel, conditions)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        btn1.setEnabled(true);
+                    }
+                });
+
+        ListView listView = (ListView) findViewById(R.id.list);
         ArrayList<String> arrayList=new ArrayList<>();
 
         arrayList.add("1 – PETE – Polyethylene Terephthalate\n" +
@@ -58,25 +79,6 @@ public class MainActivity extends AppCompatActivity {
         DatabaseReference myRef = database.getReference("users").child("chad").child("2");
         myRef.setValue("111");
 
-//        // Read from the database
-//        myRef.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                // This method is called once with the initial value and again
-//                // whenever data at this location is updated.
-//                String value = dataSnapshot.getValue(String.class);
-//                Log.d("myTag", value);
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError error) {
-//                // Failed to read value
-//                Log.w("myTag", "Failed to read value.", error.toException());
-//            }
-//        });
-
-        Button btn1 = (Button)findViewById(R.id.button_scan);
-        Button btn2 = (Button)findViewById(R.id.button_stats);
 
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
