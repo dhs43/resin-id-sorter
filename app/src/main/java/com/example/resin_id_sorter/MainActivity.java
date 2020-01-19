@@ -74,12 +74,6 @@ public class MainActivity extends AppCompatActivity {
         ArrayAdapter arrayAdapter=new ArrayAdapter(this,R.layout.list1,arrayList);
         listView.setAdapter(arrayAdapter);
 
-        // Write a message to the database
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("users").child("chad").child("2");
-        myRef.setValue("111");
-
-
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
