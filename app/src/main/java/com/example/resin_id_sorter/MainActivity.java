@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         Button btn2 = (Button)findViewById(R.id.button_stats);
         btn1.setEnabled(false);
 
-        FirebaseAutoMLRemoteModel remoteModel = new FirebaseAutoMLRemoteModel.Builder("seven_plastics_2020117235328").build();
+        FirebaseAutoMLRemoteModel remoteModel = new FirebaseAutoMLRemoteModel.Builder("plastics_202011820648").build();
 
         FirebaseModelDownloadConditions conditions = new FirebaseModelDownloadConditions.Builder()
                 .requireWifi()

@@ -37,7 +37,7 @@ public class PlasticAnalyzer {
 
     private FirebaseVisionImageLabeler labeler;
 
-    FirebaseAutoMLRemoteModel remoteModel = new FirebaseAutoMLRemoteModel.Builder("seven_plastics_2020117235328").build();
+    FirebaseAutoMLRemoteModel remoteModel = new FirebaseAutoMLRemoteModel.Builder("plastics_202011820648").build();
     FirebaseVisionOnDeviceAutoMLImageLabelerOptions.Builder optionsBuilder = new FirebaseVisionOnDeviceAutoMLImageLabelerOptions.Builder(remoteModel);
     FirebaseVisionOnDeviceAutoMLImageLabelerOptions options = optionsBuilder
             .setConfidenceThreshold(0.3f)  // Evaluate your model in the Firebase console
