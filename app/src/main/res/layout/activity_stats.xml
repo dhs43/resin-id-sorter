@@ -32,6 +32,9 @@
     <Button
         android:id="@+id/back"
         android:layout_width="350dp"
+        android:textColor="#ffffff"
+        android:textSize="20sp"
+        android:textStyle="bold"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:background="@drawable/rounded_button"

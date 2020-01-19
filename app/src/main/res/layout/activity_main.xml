@@ -118,12 +118,12 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:textSize="20sp"
+                android:textSize="22dp"
                 android:textStyle="bold"
                 android:padding="10dp"
                 android:gravity="center_horizontal"
                 android:paddingLeft="10dp"
-                android:textColor="#ffffff"
+                android:textColor="@color/colorAccent"
                 android:text="Resin Identification Codes"/>
         </LinearLayout>
 
