@@ -18,10 +18,13 @@ import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.graphics.Rect;
 import android.media.Image;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.Rational;
 import android.util.Size;
@@ -30,6 +33,9 @@ import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.graphics.Matrix;
+import android.view.animation.AlphaAnimation;
+import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.resin_id_sorter.MainActivity;
@@ -54,6 +60,8 @@ public class ScanActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scan);
 
+        findViewById(R.id.capture_button).setBackgroundResource(R.drawable.ic_add_circle_24px);
+
         viewFinder = findViewById(R.id.view_finder);
         viewFinder.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
             @Override
@@ -73,6 +81,9 @@ public class ScanActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(
                     this, REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSION);
         }
+
+        // Seekbar
+        SeekBar slider = findViewById(R.id.seekBar);
     }
 
     private void updateTransform() {
@@ -127,7 +138,7 @@ public class ScanActivity extends AppCompatActivity {
                 .build();
 
         // Build the viewfinder use case
-        Preview preview = new Preview(previewConfig);
+        final Preview preview = new Preview(previewConfig);
 
         // Everytime the viewfinder is updated, recompute the layout
         preview.setOnPreviewOutputUpdateListener(new Preview.OnPreviewOutputUpdateListener() {
@@ -150,12 +161,15 @@ public class ScanActivity extends AppCompatActivity {
         findViewById(R.id.capture_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                findViewById(R.id.capture_button).setBackgroundResource(R.drawable.ic_add_circle_outline_24px);
+
                 File file = new File(getExternalMediaDirs()[0], System.currentTimeMillis() + ".jpg");
                 imageCapture.takePicture(file, new ImageCapture.OnImageSavedListener() {
                     @Override
                     public void onImageSaved(@NonNull File file) {
                         PlasticAnalyzer myAnalyzer = new PlasticAnalyzer();
                         myAnalyzer.processImage(getApplicationContext(), file);
+                        findViewById(R.id.capture_button).setBackgroundResource(R.drawable.ic_add_circle_24px);
                     }
 
                     @Override
@@ -170,6 +184,25 @@ public class ScanActivity extends AppCompatActivity {
 
         // Bind use cases to lifecycle
         CameraX.bindToLifecycle(this, preview, imageCapture);
+
+        SeekBar slider = findViewById(R.id.seekBar);
+        slider.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                Rect box = new Rect(-1 * ((100 - progress) * 15), -1 * ((100 - progress) * 15), ((100 - progress) * 15),  ((100 - progress) * 15));
+                preview.zoom(box);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
     }
 
     private boolean allPermissionsGranted() {

@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:background="#000000">
+    android:background="#000000"
+    tools:context=".MainActivity">
 
     <TextureView
         android:id="@+id/view_finder"
@@ -14,21 +14,24 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
         android:id="@+id/capture_button"
         android:layout_width="72dp"
         android:layout_height="72dp"
         android:layout_margin="24dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/camera_shutter"
         android:scaleType="fitCenter"
-        app:srcCompat="@drawable/ic_shutter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:tint="@color/colorPrimary"
-        android:background="@android:color/transparent"
-        android:contentDescription="@string/camera_shutter"/>
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <SeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        app:layout_constraintBottom_toTopOf="@id/capture_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
