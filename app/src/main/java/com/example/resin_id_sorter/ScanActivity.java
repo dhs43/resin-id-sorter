@@ -10,6 +10,7 @@ import androidx.camera.core.ImageAnalysis;
 import androidx.camera.core.ImageAnalysisConfig;
 import androidx.camera.core.ImageCapture;
 import androidx.camera.core.ImageCaptureConfig;
+import androidx.camera.core.ImageProxy;
 import androidx.camera.core.Preview;
 import androidx.camera.core.PreviewConfig;
 import androidx.core.app.ActivityCompat;
@@ -17,9 +18,11 @@ import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.media.Image;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.util.Rational;
 import android.util.Size;
 import android.view.Surface;
@@ -31,15 +34,20 @@ import android.widget.Toast;
 
 import com.example.resin_id_sorter.MainActivity;
 import com.example.resin_id_sorter.R;
+import com.google.firebase.ml.vision.common.FirebaseVisionImage;
+import com.google.firebase.ml.vision.common.FirebaseVisionImageMetadata;
 
 import java.io.File;
 import java.util.concurrent.Executor;
+
+import static com.example.resin_id_sorter.PlasticAnalyzer.*;
 
 public class ScanActivity extends AppCompatActivity {
     private final static int REQUEST_CODE_PERMISSION = 10;
     private final static String[] REQUIRED_PERMISSIONS = new String[]{Manifest.permission.CAMERA};
 
     private TextureView viewFinder;
+    private int my_degrees;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,6 +100,7 @@ public class ScanActivity extends AppCompatActivity {
             default:
                 return;
         }
+        my_degrees = rotationDegrees;
         matrix.postRotate(rotationDegrees, centerX, centerY);
 
         // Finally, apply transformations to our TextureView
@@ -135,11 +144,9 @@ public class ScanActivity extends AppCompatActivity {
         });
 
         // Create configuration object for the image capture use case
-        ImageCaptureConfig imageCaptureConfig = new ImageCaptureConfig.Builder()
-                .setTargetAspectRatio(new Rational(1, 1))
-                .setCaptureMode(ImageCapture.CaptureMode.MIN_LATENCY)
-                .build();
+        ImageCaptureConfig imageCaptureConfig = new ImageCaptureConfig.Builder().build();
         final ImageCapture imageCapture = new ImageCapture(imageCaptureConfig);
+
         findViewById(R.id.capture_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -147,7 +154,8 @@ public class ScanActivity extends AppCompatActivity {
                 imageCapture.takePicture(file, new ImageCapture.OnImageSavedListener() {
                     @Override
                     public void onImageSaved(@NonNull File file) {
-                        Toast.makeText(ScanActivity.this, "Photo saved as " + file.getAbsolutePath(), Toast.LENGTH_SHORT).show();
+                        PlasticAnalyzer myAnalyzer = new PlasticAnalyzer();
+                        myAnalyzer.processImage(getApplicationContext(), file);
                     }
 
                     @Override
