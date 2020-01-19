@@ -1,5 +1,7 @@
 package com.example.resin_id_sorter;
 
+import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.media.Image;
 import android.content.Context;
@@ -77,6 +79,13 @@ public class PlasticAnalyzer {
                             String text = label.getText();
                             float confidence = label.getConfidence();
                             System.out.println("LABEL: " + text + " : " + confidence);
+                        }
+
+                        if (labels.size() > 0) {
+                            Intent intent = new Intent(context, ResultActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            intent.putExtra("CODE", labels.get(0).getText());
+                            context.startActivity(intent);
                         }
                     }
                 }).addOnFailureListener(new OnFailureListener() {

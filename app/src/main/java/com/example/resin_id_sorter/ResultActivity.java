@@ -13,6 +13,10 @@ public class ResultActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
 
+        String code = getIntent().getStringExtra("CODE");
+
+        System.out.println(code);
+
         Button btn1 = (Button)findViewById(R.id.back);
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
