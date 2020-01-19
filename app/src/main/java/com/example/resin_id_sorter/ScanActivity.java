@@ -1,4 +1,4 @@
-// CameraX code from https://github.com/fmmarzoa/CameraXApp
+// Some CameraX code from https://github.com/fmmarzoa/CameraXApp
 
 package com.example.resin_id_sorter;
 
@@ -6,11 +6,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.camera.core.CameraX;
-import androidx.camera.core.ImageAnalysis;
-import androidx.camera.core.ImageAnalysisConfig;
 import androidx.camera.core.ImageCapture;
 import androidx.camera.core.ImageCaptureConfig;
-import androidx.camera.core.ImageProxy;
 import androidx.camera.core.Preview;
 import androidx.camera.core.PreviewConfig;
 import androidx.core.app.ActivityCompat;
@@ -18,35 +15,18 @@ import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
 import android.graphics.Rect;
-import android.media.Image;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.util.DisplayMetrics;
-import android.util.Log;
-import android.util.Rational;
-import android.util.Size;
 import android.view.Surface;
 import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.graphics.Matrix;
-import android.view.animation.AlphaAnimation;
 import android.widget.SeekBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.resin_id_sorter.MainActivity;
-import com.example.resin_id_sorter.R;
-import com.google.firebase.ml.vision.common.FirebaseVisionImage;
-import com.google.firebase.ml.vision.common.FirebaseVisionImageMetadata;
-
 import java.io.File;
-import java.util.concurrent.Executor;
-
-import static com.example.resin_id_sorter.PlasticAnalyzer.*;
 
 public class ScanActivity extends AppCompatActivity {
     private final static int REQUEST_CODE_PERMISSION = 10;
@@ -185,12 +165,25 @@ public class ScanActivity extends AppCompatActivity {
         // Bind use cases to lifecycle
         CameraX.bindToLifecycle(this, preview, imageCapture);
 
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        final int height = displayMetrics.heightPixels;
+        final int width = displayMetrics.widthPixels;
+        Rect box = new Rect(-1 * height, width, height, -1 * width);
+        preview.zoom(box);
+
         SeekBar slider = findViewById(R.id.seekBar);
         slider.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                Rect box = new Rect(-1 * ((100 - progress) * 15), -1 * ((100 - progress) * 15), ((100 - progress) * 15),  ((100 - progress) * 15));
-                preview.zoom(box);
+                if (progress > 8) {
+                    int value = (115 - progress) * 12;
+                    Rect box = new Rect(-1 * value, value, value,  -1 * value);
+                    preview.zoom(box);
+                }else{
+                    Rect box = new Rect(-1 * height, width, height, -1 * width);
+                    preview.zoom(box);
+                }
             }
 
             @Override

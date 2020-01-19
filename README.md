@@ -5,3 +5,5 @@ App uses a set of approximately 500 photos of RICs. Users can, with varying succ
 
 The next-step for usability would be to collect a larger dataset to better train the model. 
 Current dataset was collected by Piao Ya: https://www.kaggle.com/piaoya/plastic-recycling-codes
+
+Created during UCSC CruzHacks

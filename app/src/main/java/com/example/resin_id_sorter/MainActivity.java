@@ -3,7 +3,6 @@ package com.example.resin_id_sorter;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.view.View;
@@ -12,11 +11,6 @@ import android.widget.ListView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.ml.common.modeldownload.FirebaseModelDownloadConditions;
 import com.google.firebase.ml.common.modeldownload.FirebaseModelManager;
 import com.google.firebase.ml.vision.automl.FirebaseAutoMLRemoteModel;
@@ -72,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         arrayList.add("7 – Other\n" +
                 "\n" +
                 "Could be a mixture of any and all of the above or plastics not readily recyclable such as polyurethane. Avoid it if you can – recyclers generally speaking don’t want it.");
-        arrayList.add("\n \nIMPORTANT NOTICE:\nRules and regulations differ by location; check with your local waste management services for details on what can and can not be recycled locally.");
+        arrayList.add("\n \nIMPORTANT NOTICE:\n \nRules and regulations differ by location; check with your local waste management services for details on what can and can not be recycled locally.");
         ArrayAdapter arrayAdapter=new ArrayAdapter(this,R.layout.list1,arrayList);
         listView.setAdapter(arrayAdapter);
 

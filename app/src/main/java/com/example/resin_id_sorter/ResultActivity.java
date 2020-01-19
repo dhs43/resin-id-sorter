@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -133,6 +132,7 @@ public class ResultActivity extends AppCompatActivity {
 //              btn2.setBackgroundColor(Color.parseColor("#393939"));
                 btn2.setBackgroundResource(R.drawable.rounded_button_grey);
                 btn2.setTextColor(Color.parseColor("#80e27e"));
+                btn2.setText("Recycled! ♻️");
 
                 // Write a message to the database
                 final FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -144,12 +144,12 @@ public class ResultActivity extends AppCompatActivity {
 
                         myRef.setValue(stat + 1);
 
-                        Context context = getApplicationContext();
-                        CharSequence text = "Recycle Statistics Updated!";
-                        int duration = Toast.LENGTH_SHORT;
-
-                        Toast toast = Toast.makeText(context, text, duration);
-                        toast.show();
+//                        Context context = getApplicationContext();
+//                        CharSequence text = "Recycle Statistics Updated!";
+//                        int duration = Toast.LENGTH_SHORT;
+//
+//                        Toast toast = Toast.makeText(context, text, duration);
+//                        toast.show();
                     }
 
                     @Override

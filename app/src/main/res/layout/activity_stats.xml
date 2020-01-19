@@ -10,7 +10,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Your Resin Distribution Chart"
+        android:text="Your Plastic Distribution Chart"
         android:textSize="20dp"
         android:textStyle="bold"
         android:textColor="#ffffff"
