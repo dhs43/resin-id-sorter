@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         ListView listView = (ListView) findViewById(R.id.list);
         ArrayList<String> arrayList=new ArrayList<>();
 
+        arrayList.add("\n \nIMPORTANT NOTICE:\n \nRules and regulations can differ by location; check with your local waste management services for details on what can and can not be recycled locally.");
         arrayList.add("1 – PETE – Polyethylene Terephthalate\n" +
                 "\n" +
                 "The easiest plastics to recycle. Often used for soda bottles, water bottles and many common food packages. Is recycled into bottles and polyester fibers. Picked up through most curbside recycling programs.");
@@ -71,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
         arrayList.add("7 – Other\n" +
                 "\n" +
                 "Could be a mixture of any and all of the above or plastics not readily recyclable such as polyurethane. Avoid it if you can – recyclers generally speaking don’t want it.");
+        arrayList.add("\n \nIMPORTANT NOTICE:\nRules and regulations differ by location; check with your local waste management services for details on what can and can not be recycled locally.");
         ArrayAdapter arrayAdapter=new ArrayAdapter(this,R.layout.list1,arrayList);
         listView.setAdapter(arrayAdapter);
 

@@ -138,7 +138,7 @@ public class ResultActivity extends AppCompatActivity {
                         myRef.setValue(stat + 1);
 
                         Context context = getApplicationContext();
-                        CharSequence text = "Added to your Recycle Statistics!";
+                        CharSequence text = "Recycle Statistics Updated!";
                         int duration = Toast.LENGTH_SHORT;
 
                         Toast toast = Toast.makeText(context, text, duration);
