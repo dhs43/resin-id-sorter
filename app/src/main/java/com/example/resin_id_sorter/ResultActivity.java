@@ -1,6 +1,8 @@
 package com.example.resin_id_sorter;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
@@ -11,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -92,12 +95,12 @@ public class ResultActivity extends AppCompatActivity {
             case "PS":
                 changeText.setText("Polystyrene (6 - PS)");
                 img.setImageResource(R.drawable.ps_6);
-                changeText2.setText("Cups, foam food trays, packing peanuts. Polystyrene (also known as styrofoam) is a real problem as it’s bulky yet very lightweight and that makes it difficult to recycle. For example, a carload of expanded polystyrene would weigh next to nothing so there’s not a lot of materials to reclaim. It can however be reused. Number 6 plastics can be recycled through some curbside programs.\n" +
+                changeText2.setText("Cups, foam food trays, packing peanuts. Polystyrene is a real problem as it’s bulky yet very lightweight and that makes it difficult to recycle. For example, a carload of expanded polystyrene would weigh next to nothing so there’s not a lot of materials to reclaim. It can however be reused. Number 6 plastics can be recycled through some curbside programs.\n" +
                         "\n" +
+                        "Common Product Descriptions:\n" +
                         "• Excellent moisture barrier for short shelf life products \n" +
                         "• Significant stiffness in both foamed and rigid forms. \n" +
-                        "• Low density and high stiffness in foamed applications \n" +
-                        "• Low thermal conductivity and excellent insulation properties in foamed form \n");
+                        "• Low density and high stiffness in foamed applications \n");
                 break;
             case "OTHER":
                 changeText.setText("Other (7)");
@@ -126,7 +129,11 @@ public class ResultActivity extends AppCompatActivity {
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                btn2.setText("Recycle +1");
+                btn2.setClickable(false);
+//              btn2.setBackgroundColor(Color.parseColor("#393939"));
+                btn2.setBackgroundResource(R.drawable.rounded_button_grey);
+                btn2.setTextColor(Color.parseColor("#80e27e"));
+
                 // Write a message to the database
                 final FirebaseDatabase database = FirebaseDatabase.getInstance();
                 final DatabaseReference myRef = database.getReference("users").child("chad").child(code);
